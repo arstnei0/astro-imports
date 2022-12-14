@@ -1,0 +1,19 @@
+{
+	"name": "astro-imports",
+	"version": "1.0.0",
+	"description": "",
+	"main": "dist/index.mjs",
+	"type": "module",
+	"types": "dist/index.d.ts",
+	"scripts": {
+		"build": "unbuild"
+	},
+	"devDependencies": {
+		"unbuild": "^1.0.2"
+	},
+	"dependencies": {
+		"astro": "^1.6.15",
+		"type-fest": "^3.4.0",
+		"unplugin-auto-import": "^0.12.1"
+	}
+}
