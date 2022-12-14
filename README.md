@@ -2,9 +2,21 @@
 
 An auto-import integration for astro.
 
-## Usage
+## Install
 
-First install the latest version of `astro-imports` using whichever package manager you prefer to use. For example:
+### Use `astro add astro-imports` (Simplest and fastest)
+
+You can use npm, yarn or pnpm.
+
+```shell
+npx astro add astro-imports
+```
+
+That's it!
+
+### Install manually
+
+Install the latest version of `astro-imports` manually using whichever package manager you prefer to use. For example:
 
 ```shell
 pnpm add astro-imports@latest
@@ -14,12 +26,14 @@ The import `astro-imports` in your astro config file (e.g. astro.config.ts):
 
 ```ts
 import { defineConfig } from "astro/config"
-import createImports from "astro-imports"
+import imports from "astro-imports"
 
 export default defineConfig({
-	integrations: [createImports()],
+	integrations: [imports()],
 })
 ```
+
+## Usage
 
 Add `/// <reference types="../imports.d.ts" />` to your `env.d.ts` in the `src` directory (or vite-env.d.ts) for type intellisense:
 
@@ -63,15 +77,15 @@ const posts = post.getPosts()
 
 ## Options
 
-Here is an example of passing options to the `createImports` function:
+Here is an example of passing options to the `imports` function:
 
 ```ts
 import { defineConfig } from "astro/config"
-import createImports from "astro-imports"
+import imports from "astro-imports"
 
 export default defineConfig({
 	integrations: [
-		createImports({
+		imports({
 			// You can provide a boolean that indicates if you want to generate the TypeScript Declaration file, or a string that specifies the name of the `.d.ts` file.
 			dts: "auto-imports.d.ts",
 			// See [Unimport's docs](https://github.com/unjs/unimport#custom-presets) to find more info about the presets option.
