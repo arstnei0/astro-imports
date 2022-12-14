@@ -1,0 +1,4 @@
+src
+.prettier*
+tsup.config.ts
+tsconfig.json

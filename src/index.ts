@@ -1,11 +1,10 @@
 import { slash } from "@antfu/utils"
-import { AstroIntegration, AstroConfig } from "astro"
+import { AstroConfig, AstroIntegration } from "astro"
 import fg from "fast-glob"
 import { writeFile } from "fs/promises"
 import * as path from "path"
+import { BuiltinPresetName, createUnimport as _createUnimport, Preset } from "unimport"
 import type { Plugin } from "vite"
-import { createUnimport as _createUnimport } from "unimport"
-import { Preset, BuiltinPresetName } from "unimport"
 
 const components = fg.sync("./src/components/**/*.astro")
 const layouts = fg.sync("./src/layouts/**/*.astro")
@@ -72,10 +71,12 @@ const generateTypeDeclarations = async (file: string) => {
 
 export default (options: Options = {}) => {
 	const { dts: _dts = true, presets = [] } = options
-	let dts: string
+	let dts: string | null = null
 
-	if (typeof _dts === "boolean") dts = "imports.d.ts"
-	else dts = _dts
+	if (_dts) {
+		if (typeof _dts === "boolean") dts = "imports.d.ts"
+		else if (_dts) dts = _dts
+	}
 
 	const pdts = path.posix.resolve(dts)
 
@@ -132,25 +133,27 @@ export default (options: Options = {}) => {
 										})
 									})
 
-									vite.watcher.on(
-										"all",
-										async (type, p, stats) => {
-											if (
-												path.posix
-													.resolve(p)
-													.includes(pdts)
-											)
-												return
-
-											await writeFile(
-												dts,
-												await generateTypeDeclarations(
-													dts
-												),
-												"utf-8"
-											)
-										}
-									)
+									if (dts) {
+										vite.watcher.on(
+											"all",
+											async (type, p, stats) => {
+												if (
+													path.posix
+														.resolve(p)
+														.includes(pdts)
+												)
+													return
+	
+												await writeFile(
+													dts,
+													await generateTypeDeclarations(
+														dts
+													),
+													"utf-8"
+												)
+											}
+										)
+									}
 								},
 							},
 						] as Plugin[],
