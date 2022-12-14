@@ -29,9 +29,9 @@ export default (options: Options = {}) => {
 									...(imports as any),
 								],
 								dirs: [
-									"./src/components",
-									"./src/layouts",
-									"./src/imports",
+									"./src/components/**",
+									"./src/layouts/**",
+									"./src/imports/**",
 								],
 							}),
 						],
