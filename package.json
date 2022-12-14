@@ -1,6 +1,6 @@
 {
 	"name": "astro-imports",
-	"version": "1.1.0",
+	"version": "1.4.0",
 	"description": "Auto imports for Astro.",
 	"main": "dist/index.mjs",
 	"type": "module",
@@ -9,12 +9,16 @@
 		"build": "unbuild"
 	},
 	"devDependencies": {
+		"@types/node": "^18.11.15",
+		"prettier": "^2.8.1",
 		"unbuild": "^1.0.2"
 	},
 	"dependencies": {
+		"@antfu/utils": "^0.7.2",
 		"astro": "^1.6.15",
+		"fast-glob": "^3.2.12",
 		"type-fest": "^3.4.0",
-		"unplugin-auto-import": "^0.12.1"
+		"vite": "^4.0.1"
 	},
 	"files": [
 		"dist/index.mjs",
