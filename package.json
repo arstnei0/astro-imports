@@ -1,7 +1,7 @@
 {
 	"name": "astro-imports",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Auto imports for Astro.",
 	"main": "dist/index.mjs",
 	"type": "module",
 	"types": "dist/index.d.ts",
